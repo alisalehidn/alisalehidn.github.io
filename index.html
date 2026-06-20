@@ -1,10 +1,362 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Salehi Darjani — PhD Student</title>
+  <meta name="description" content="Personal academic page of Ali Salehi Darjani, PhD student researching sequential decision making and machine learning.">
+
+  <!-- ====== basic site metadata ====== -->
+
+  <style>
+    :root {
+      --max-width: 980px;
+      --color-bg: #121212;
+      --color-text: #e8e8e8;
+      --color-muted: #9a9a9a;
+      --color-accent: #4da3ff;
+      --color-border: #2e2e2e;
+      --color-chip-bg: #1c2733;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    header.profile {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    header.profile img.avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    header.profile .intro h1 {
+      margin: 0 0 4px;
+      font-size: 1.8rem;
+    }
+
+    header.profile .intro .role {
+      margin: 0 0 8px;
+      color: var(--color-muted);
+      font-size: 1rem;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .links a {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .links a:hover {
+      border-bottom-color: var(--color-accent);
+    }
+
+    nav.section-nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.95rem;
+    }
+
+    nav.section-nav a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav.section-nav a:hover {
+      color: var(--color-accent);
+    }
+
+    .layout {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+    }
+
+    .sidebar .widget {
+      margin-bottom: 32px;
+      padding: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+
+    .sidebar .widget h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--color-accent);
+    }
+
+    .sidebar .widget p {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 0.9rem;
+    }
+
+    section {
+      margin-bottom: 44px;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--color-accent);
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .news-list, .pub-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .news-list li {
+      margin-bottom: 10px;
+      padding-left: 1.2em;
+      position: relative;
+    }
+
+    .news-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    .news-list .date {
+      color: var(--color-muted);
+      font-size: 0.9em;
+      margin-right: 6px;
+    }
+
+    .pub-list li {
+      margin-bottom: 20px;
+    }
+
+    .pub-list .pub-title {
+      font-weight: 600;
+      display: block;
+    }
+
+    .pub-list .pub-authors {
+      display: block;
+      color: var(--color-text);
+    }
+
+    .pub-list .pub-venue {
+      display: block;
+      color: var(--color-muted);
+      font-style: italic;
+      font-size: 0.95em;
+    }
+
+    .pub-list .pub-links a {
+      font-size: 0.9em;
+      margin-right: 12px;
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .pub-list .pub-links a:hover {
+      text-decoration: underline;
+    }
+
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .interests-list li {
+      background: var(--color-chip-bg);
+      color: var(--color-accent);
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      color: var(--color-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      padding-top: 20px;
+    }
+
+    @media (max-width: 480px) {
+      header.profile { flex-direction: column; text-align: center; }
+      .links { justify-content: center; }
+    }
+
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>This is my GitHub Page</p>
+  <div class="container">
+
+    <!-- ====== HEADER / PROFILE ====== -->
+    <header class="profile">
+      <img class="avatar" src="images/profile.jpeg" alt="Ali Salehi Darjani">
+      <div class="intro">
+        <h1>Ali Salehi Darjani</h1>
+        <p class="role">PhD Student, Department of Electrical and Computer Engineering, University at Albany, SUNY</p>
+        <div class="links">
+          <a href="mailto:asalehidarjani@albany.edu">Email</a>
+          <a href="https://scholar.google.com/citations?user=yBn0fn4AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://github.com/alisalehidn" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/ali-salehi-darjani-b6965b207/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="files/Ali_Salehi_darjani_CV.pdf" target="_blank" rel="noopener">CV</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====== SECTION NAVIGATION ====== -->
+    <nav class="section-nav">
+      <a href="#about">About</a>
+      <a href="#research">Research Interests</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ====== MAIN LAYOUT: CONTENT + SIDEBAR ====== -->
+    <div class="layout">
+
+      <main class="main">
+
+        <!-- ====== ABOUT ====== -->
+        <section id="about">
+          <h2>About Me</h2>
+          <p>
+            I am a PhD student in the <strong>Department of Electrical and Computer Engineering</strong> at
+            <strong>University at Albany, SUNY</strong>, where I joined in January 2025. I work with
+            <strong>Prof. Daphney-Stavroula Zois</strong> in the
+            <a href="https://imagine9lab.github.io/research_group.html" target="_blank" rel="noopener"><strong>IMAgINE Lab</strong></a>.
+            My current research focuses on efficient inference for deep learning models and large
+            language models (LLMs), as well as sequential decision making under uncertainty in
+            partially observable environments (POMDPs).
+          </p>
+        </section>
+
+        <!-- ====== RESEARCH INTERESTS ====== -->
+        <section id="research">
+          <h2>Research Interests</h2>
+          <ul class="interests-list">
+            <li>Efficient Inference for Deep Learning</li>
+            <li>Large Language Models (LLMs)</li>
+            <li>Sequential Decision Making</li>
+            <li>Partially Observable Markov Decision Processes (POMDPs)</li>
+            <li>Reinforcement Learning</li>
+          </ul>
+        </section>
+
+        <!-- ====== NEWS ====== -->
+        <section id="news">
+          <h2>News</h2>
+          <ul class="news-list">
+            <li><span class="date">Feb 2026</span> "Learning to Cascade: A POMDP Approach to Sequential Model Selection" was accepted to ICASSP 2026.</li>
+            <li><span class="date">Dec 2025</span> "CHEX: A Cascade of Heterogeneous Experts for Instance-Wise Credit Assessment" was accepted to IEEE BigData 2025.</li>
+            <li><span class="date">Jan 2025</span> Started my PhD in the IMAgINE Lab at University at Albany, SUNY.</li>
+          </ul>
+        </section>
+
+        <!-- ====== PUBLICATIONS ====== -->
+        <section id="publications">
+          <h2>Publications</h2>
+          <ul class="pub-list">
+            <li>
+              <span class="pub-title">Learning to Cascade: A POMDP Approach to Sequential Model Selection</span>
+              <span class="pub-authors">A. S. Darjani, D. S. Zois</span>
+              <span class="pub-venue">IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2026</span>
+              <span class="pub-links">
+                <a href="https://ieeexplore.ieee.org/abstract/document/11464865" target="_blank" rel="noopener">IEEE Xplore</a>
+              </span>
+            </li>
+            <li>
+              <span class="pub-title">CHEX: A Cascade of Heterogeneous Experts for Instance-Wise Credit Assessment</span>
+              <span class="pub-authors">D. S. Zois, C. Chelmis, M. Azarshab, A. S. Darjani</span>
+              <span class="pub-venue">IEEE International Conference on Big Data (BigData), 2025, pp. 125-130</span>
+              <span class="pub-links">
+                <a href="https://ieeexplore.ieee.org/abstract/document/11402635" target="_blank" rel="noopener">IEEE Xplore</a>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- ====== CONTACT ====== -->
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>
+            Email: <a href="mailto:asalehidarjani@albany.edu">asalehidarjani@albany.edu</a><br>
+            LinkedIn: <a href="https://www.linkedin.com/in/ali-salehi-darjani-b6965b207/" target="_blank" rel="noopener">profile</a>
+          </p>
+        </section>
+
+      </main>
+
+      <!-- ====== SIDEBAR ====== -->
+      <aside class="sidebar">
+        <div class="widget">
+          <h3>Collaboration</h3>
+          <p>I am always looking forward to new ideas, great research, and developing ideas together.</p>
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      &copy; 2026 Ali Salehi Darjani. Built with HTML &amp; CSS.
+    </footer>
+
+  </div>
 </body>
 </html>
